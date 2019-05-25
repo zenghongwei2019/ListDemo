@@ -32,7 +32,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder userViewHolder, int position) {
-        UserInfo userInfo = mUserInfos.get(position);
+        final UserInfo userInfo = mUserInfos.get(position);
         Glide.with(userViewHolder.picture).load(userInfo.avatarUrl).into(userViewHolder.picture);
         userViewHolder.name.setText(userInfo.userName);
         userViewHolder.email.setText(userInfo.content);
@@ -43,13 +43,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         return mUserInfos.size();
     }
 
-    class UserViewHolder extends RecyclerView.ViewHolder {
+    static class UserViewHolder extends RecyclerView.ViewHolder {
 
         ImageView picture;
         TextView name;
         TextView email;
 
-        private UserViewHolder(View itemView) {
+        public UserViewHolder(View itemView) {
             super(itemView);
             picture = (ImageView) itemView.findViewById(R.id.iv_picture);
             name = (TextView) itemView.findViewById(R.id.tv_name);
